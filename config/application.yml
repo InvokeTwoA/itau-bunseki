@@ -1,0 +1,6 @@
+defaults: &defaults
+  seibun:
+    "hoge"
+  seibun2:
+    "hige"
+  
