@@ -1,3 +1,4 @@
+# encoding: utf-8
 class RootsController < ApplicationController
 
   # 小さなプログラムなので全てcontrollerで完結させてしまう
@@ -5,6 +6,7 @@ class RootsController < ApplicationController
     @name = params[:name]
 
     if @name.present?
+      @name = "文字列長すぎマン" if @name.length > 30
       per_list = []
       @seibun_list = []
       file = open(Rails.root.join("public/seibun_list.txt"))
