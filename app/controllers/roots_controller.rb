@@ -21,19 +21,21 @@ class RootsController < ApplicationController
         number = number < 100 ? number * number * 3759 : (number*2/3).to_i
       end
       @per_list = per_list.sort {|a, b| (-1) * (a <=> b)}
-    end
-    graph_list = []
-    @per_list.each_with_index do |per, i|
-      graph_list.push [@seibun_list[i], per]
-    end
-    Rails.logger.info graph_list
-    @chart = LazyHighCharts::HighChart.new('pie') do |f|
-      f.chart({defaultSeriesType: 'pie', margin: [50, 200, 60, 170]})
-      f.series({
-        type: 'pie',
-        name: @name,
-        data: graph_list
-      })
+
+      # グラフ描画
+      graph_list = []
+      @per_list.each_with_index do |per, i|
+        graph_list.push [@seibun_list[i], per]
+      end
+      Rails.logger.info graph_list
+      @chart = LazyHighCharts::HighChart.new('pie') do |f|
+        f.chart({defaultSeriesType: 'pie', margin: [50, 200, 60, 170]})
+        f.series({
+          type: 'pie',
+          name: @name,
+          data: graph_list
+        })
+      end
     end
 
   end
