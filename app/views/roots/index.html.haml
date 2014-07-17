@@ -15,7 +15,6 @@
         %table.table.table-striped.table-hover{:width => "50%"}
           - @per_list.each_with_index do |per, i|
             %tr
-              %td #{@name}の#{per}%は
-              %td 「#{@seibun_list[i]}」です
+              %td #{@name}の#{per}%は「#{@seibun_list[i]}」です
       .col-lg-7
         = high_chart("#{@name}の脳内", @chart)
