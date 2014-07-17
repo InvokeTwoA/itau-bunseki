@@ -5,7 +5,7 @@ require File.expand_path('../application', __FILE__)
 ItauBunseki::Application.initialize!
 
 
-RailsProvingGround::Application.configure do
+ItauBunseki::Application.configure do
   config.assets.precompile += %w(cyborg.css cyborg.js)
 end
 
