@@ -1,7 +1,6 @@
 
 %form{:method => "get", :action => "/"}
-  %input.form-control#name{:type => "text", :placeholder => "名前を入力してください", :name => "name"}
-
+  %input.form-control#name{:type => "text", :placeholder => "名前を入力してください", :name => "name", :value => @value}
 
 -if @name.present?
   .bs-docs-section
@@ -12,4 +11,4 @@
             %tr
               %td #{@name}の#{per}%は「#{@seibun_list[i]}」です
       .col-lg-7
-        = high_chart("#{@name}の脳内", @chart)
+        = high_chart("#{@name}の正体", @chart)

@@ -12,7 +12,7 @@ class RootsController < ApplicationController
       file = open(Rails.root.join("public/seibun_list.txt"))
       seibun_key = file.readlines
       nokori = 100
-      number = @name.hash.abs
+      number = Digest::MD5.new.update(@name).to_s.to_i(16)
       while true
         per = (nokori < 10) ? nokori : number % (nokori + 1)
         per_list.push per
