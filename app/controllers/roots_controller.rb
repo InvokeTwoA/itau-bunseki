@@ -4,7 +4,6 @@ class RootsController < ApplicationController
   # 小さなプログラムなので全てcontrollerで完結させてしまう
   def index
     @name = params[:name]
-
     if @name.present?
       @name = "文字列長すぎマン" if @name.length > 30
       per_list = []
@@ -15,10 +14,12 @@ class RootsController < ApplicationController
       number = Digest::MD5.new.update(@name).to_s.to_i(16)
       while true
         per = (nokori < 10) ? nokori : number % (nokori + 1)
+        per = 1 if (per == 0)
         per_list.push per
         @seibun_list.push seibun_key[number%(seibun_key.length)].chomp
         seibun_key.delete_at(number%(seibun_key.length))
         nokori -= per
+        Rails.logger.info "per = #{per}; nokori = #{nokori}"
         break if nokori <= 0
         number = number < 100 ? number * number * 3759 : (number*2/3).to_i
       end
@@ -39,6 +40,9 @@ class RootsController < ApplicationController
         })
       end
     end
+  end
+
+  def history
 
   end
 end
